@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.caerux.unityplugins"
+        minSdkVersion 14
+        targetSdkVersion 7
+        versionCode 1
+        versionName "1.0"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation files('/Users/tinh/Documents/MyWorkspace/Smartpass-SuguStampforUnity/Assets/Plugins/Android/libs/an_googleplay.jar')
+    implementation files('libs/androidnative.jar')
+    implementation files('/Users/tinh/Documents/MyWorkspace/Smartpass-SuguStampforUnity/Assets/Plugins/Android/libs/an_googleplay.jar')
+}

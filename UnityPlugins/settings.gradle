@@ -1,0 +1,2 @@
+include ':app', ':devicestatus', ':handlenotificationaction', ':stanandroidnative', ':an_googleplay', ':firebase_lib', ':firebase'
+include ':editimage'
