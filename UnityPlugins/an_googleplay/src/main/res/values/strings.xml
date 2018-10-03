@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">androidnative</string>
+    <string name="default_notification_channel_id">deco_channel</string>
 </resources>

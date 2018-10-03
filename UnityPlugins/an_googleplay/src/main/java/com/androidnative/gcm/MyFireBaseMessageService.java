@@ -101,31 +101,33 @@ public class MyFireBaseMessageService extends FirebaseMessagingService {
 			}
 
 			String title = extras.getData().get("title");
-			String message = extras.getData().get("alert");
-			String data = extras.getData().get("json");
-			Log.d("AndroidNative", "GCM Push Notification data received " + data);
-			String bigPicture = "";
+			String message = extras.getData().get("body");
+			String bigPicture = extras.getData().get("bigpic");
+			String browserUrl = extras.getData().get("browser_url");
+//			String data = extras.getData().get("json");
+//			Log.d("AndroidNative", "GCM Push Notification data received " + data);
+//			String bigPicture = "";
 			String notificationAlert = null;
-			String browserUrl = "";
+//			String browserUrl = "";
 
-			try {
-				JSONObject json = new JSONObject(data);
-				bigPicture = json.optString("big_picture_url");
-				browserUrl = json.optString("browser_url");
-				notificationAlert = json.optString("notification_alert");
-				Log.d("AndroidNative", "Big Picture Push Notification style detedted. Big Piucture URL: " + bigPicture);
-			} catch (JSONException var32) {
-				Log.d("AndroidNative", "Push Notification JSON parse error " + var32.getMessage());
-			}
+//			try {
+//				JSONObject json = new JSONObject(data);
+//				bigPicture = json.optString("big_picture_url");
+//				browserUrl = json.optString("browser_url");
+//				notificationAlert = json.optString("notification_alert");
+//				Log.d("AndroidNative", "Big Picture Push Notification style detedted. Big Piucture URL: " + bigPicture);
+//			} catch (JSONException var32) {
+//				Log.d("AndroidNative", "Push Notification JSON parse error " + var32.getMessage());
+//			}
 
 			this.mNotificationManager = (NotificationManager)this.getSystemService("notification");
 
 			///Android API ≥ 26のため、通知チャネルを作成する。
 			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 				// The user-visible name of the channel.
-				CharSequence app_name = "Smartpass_Mystampbox";
+				CharSequence app_name = "Smartpass_FireBase";
 				// The user-visible description of the channel.
-				String description = "Smartpass Mystampbox 通知チャネルです。";
+				String description = "Smartpass FireBase 通知チャネルです。";
 				int importance = NotificationManager.IMPORTANCE_DEFAULT;
 				NotificationChannel mChannel;
 				mChannel = new NotificationChannel(channel_id, app_name, importance);
@@ -140,7 +142,7 @@ public class MyFireBaseMessageService extends FirebaseMessagingService {
 			StringBuilder builder = new StringBuilder();
 			builder.append(message);
 			builder.append("|");
-			builder.append(data);
+//			builder.append(data);
 			if (!willBeShown) {
 				try {
 					UnityPlayer.UnitySendMessage("GoogleCloudMessageService", "GCMNotificationCallback", builder.toString());
